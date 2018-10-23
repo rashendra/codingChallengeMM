@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Utils {
 
+
     public static List<EventRecord> processCsvFileForGivenTimestamp(String csvFileName, String timeStamp) {
         List<EventRecord> eventRecords = new ArrayList<>();
         try {
@@ -34,7 +35,7 @@ public class Utils {
             // This event will be added as default event to calculate the possession
             EventRecord printSummaryEvent = new EventRecord();
             setEventTime(printSummaryEvent, timeStamp);
-            printSummaryEvent.setEventType("PRINTSUMMARY");
+            printSummaryEvent.setEventType(GameConstants.PRINTSUMMARY);
             eventRecords.add(printSummaryEvent);
 
         } catch (IOException e) {
@@ -84,6 +85,23 @@ public class Utils {
         Float totalTimeOfTeam = Float.valueOf(teamPossession.toString());
         Float percentage = (totalTimeOfTeam/totalTimeOfGame) * 100;
         return percentage.toString() +"%";
+    }
+
+    public static Boolean validateTimestamp(String timestamp) {
+        Boolean validTimestamp = Boolean.FALSE;
+        if(timestamp != null && !timestamp.isEmpty()) {
+            String[] timeStampElements = timestamp.split(":");
+            if(timeStampElements != null && timeStampElements.length>1) {
+                for(String timestampElement :timeStampElements) {
+                    if (!timestampElement.matches("[0-9]+")) {
+                        validTimestamp = Boolean.FALSE;
+                        break;
+                    }
+                    validTimestamp = Boolean.TRUE;
+                }
+            }
+        }
+        return validTimestamp;
     }
 
 

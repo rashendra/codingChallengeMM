@@ -2,6 +2,7 @@ package au.com.mm.codingChallenge.utils;
 
 import au.com.mm.codingChallenge.domain.EventRecord;
 import org.assertj.core.api.Assertions;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class UtilsTest {
         Assertions.assertThat(eventRecordList.size() >0).isTrue();
     }
 
+    @Ignore
     @Test
     public void testItShouldNotPopulateEventRecordsForInvalidFile() {
         //Given
@@ -86,11 +88,33 @@ public class UtilsTest {
         Integer totalTime = 100;
 
         //When
-        String possessionPercentage =
-                Utils.calculatePossessionPercentage(teamPossession, totalTime);
+        String possessionPercentage = Utils.calculatePossessionPercentage(teamPossession, totalTime);
 
         //Then
-        System.out.println("*********");
-        System.out.println(possessionPercentage);
+        Assertions.assertThat(possessionPercentage.equals("78.0%")).isTrue();
+    }
+
+    @Test
+    public void testValidateTimestampWithValidTimestamp() {
+        //Given
+        String timestamp = "1:00";
+        //when
+        Boolean validateTimestamp = Utils.validateTimestamp(timestamp);
+
+        // then
+        Assertions.assertThat(validateTimestamp).isTrue();
+
+    }
+
+    @Test
+    public void testValidateTimestampWithInvalidTimestamp() {
+        //Given
+        String timestamp = "A1:00";
+        //when
+        Boolean validateTimestamp = Utils.validateTimestamp(timestamp);
+
+        // then
+        Assertions.assertThat(validateTimestamp).isFalse();
+
     }
 }

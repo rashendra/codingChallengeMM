@@ -1,5 +1,6 @@
 package au.com.mm.codingChallenge;
 
+import au.com.mm.codingChallenge.utils.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,17 +19,18 @@ public class CodingChallengeApplication {
         ExecuteCommand executeCommand = new ExecuteCommand();
         try (Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNext()) {
-                executeCommand.executeCommand(scanner.nextLine().trim());
+                String timestamp = scanner.nextLine().trim();
+                if(Utils.validateTimestamp(timestamp)) {
+                    executeCommand.executeCommand(timestamp);
+                } else {
+                    System.out.println("Invalid format! Please enter a valid time stamp in mm:ss format");
+                }
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    private Boolean validateTimeStamp() {
-        return Boolean.TRUE;
-    }
-
 
 }

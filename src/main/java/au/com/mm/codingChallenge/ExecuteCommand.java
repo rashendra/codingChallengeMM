@@ -10,8 +10,6 @@ public class ExecuteCommand {
     ProcessEvents processEvents = new ProcessEventsImpl();
 
     public void executeCommand(String timestamp) {
-        System.out.println("This is the timestamp : "+ timestamp);
-        System.out.println(processEvents == null);
         processEvents = new ProcessEventsImpl();
         processEvents.processEventsForGivenTimestamp(timestamp);
     }
