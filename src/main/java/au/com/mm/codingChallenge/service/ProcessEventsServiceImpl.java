@@ -6,20 +6,32 @@ import au.com.mm.codingChallenge.domain.Team;
 import au.com.mm.codingChallenge.domain.events.Event;
 import au.com.mm.codingChallenge.utils.GameConstants;
 import au.com.mm.codingChallenge.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("processEvents")
-public class ProcessEventsImpl implements  ProcessEvents {
+public class ProcessEventsServiceImpl implements ProcessEventsService {
 
-    @Autowired
-    EventFactoryService eventFactoryService;
+    private EventFactoryService eventFactoryService;
+
+    private static ProcessEventsServiceImpl processEventsImpl;
+
+    private ProcessEventsServiceImpl() {
+    }
+
+    public static ProcessEventsService getInstance() {
+        if(processEventsImpl == null) {
+            synchronized(ProcessEventsServiceImpl.class){
+                if(processEventsImpl == null) {
+                    processEventsImpl = new ProcessEventsServiceImpl();
+                }
+            }
+        }
+        return  processEventsImpl;
+    }
 
     @Override
     public void processEventsForGivenTimestamp(String timeStamp) {
-        eventFactoryService  = new EventFactoryServiceImpl();
+        eventFactoryService  = EventFactoryServiceImpl.getInstance();
         // This will only populate events which are inside the given timestamp
         Game game = initializeGame();
         List<EventRecord> eventRecordList = Utils.processCsvFileForGivenTimestamp("events.csv",timeStamp);
@@ -27,10 +39,11 @@ public class ProcessEventsImpl implements  ProcessEvents {
         for(EventRecord eventRecord: eventRecordList) {
             Event event  = eventFactoryService.populateEvent(eventRecord);
             event.executeEvent(game,eventRecord);
-
         }
 
     }
+
+
 
     private Game initializeGame() {
         Game game = new Game();

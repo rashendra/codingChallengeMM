@@ -73,8 +73,7 @@ public class UtilsTest {
         String givenTimeStamp = "23:56";
 
         //When
-        Integer timeInSeconds =
-                Utils.getTimestampInSeconds(givenTimeStamp);
+        Integer timeInSeconds = Utils.getTimestampInSeconds(givenTimeStamp);
 
         //Then
         Assertions.assertThat(timeInSeconds == 1436).isTrue();

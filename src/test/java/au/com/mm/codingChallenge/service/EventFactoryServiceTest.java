@@ -18,7 +18,7 @@ public class EventFactoryServiceTest {
     @Before
     public void setUp()
     {
-        eventFactoryService = new EventFactoryServiceImpl();
+        eventFactoryService = EventFactoryServiceImpl.getInstance();
         eventRecord = new EventRecord();
         MockitoAnnotations.initMocks(this);
     }

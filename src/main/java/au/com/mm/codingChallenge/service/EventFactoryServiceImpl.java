@@ -3,11 +3,26 @@ package au.com.mm.codingChallenge.service;
 import au.com.mm.codingChallenge.domain.EventRecord;
 import au.com.mm.codingChallenge.domain.events.*;
 import au.com.mm.codingChallenge.domain.events.enums.EventType;
-import org.springframework.stereotype.Service;
-
-@Service("eventFactoryService")
+/*
+* Below classes have used the singleton design pattern in creating instace
+* */
 public class EventFactoryServiceImpl implements EventFactoryService {
 
+    private static EventFactoryService eventFactoryService;
+
+    private EventFactoryServiceImpl() {
+    }
+
+    public static EventFactoryService getInstance() {
+        if(eventFactoryService == null) {
+            synchronized(EventFactoryServiceImpl.class){
+                if(eventFactoryService == null) {
+                    eventFactoryService = new EventFactoryServiceImpl();
+                }
+            }
+        }
+        return  eventFactoryService;
+    }
 
     @Override
     public Event populateEvent(EventRecord eventRecord) {
@@ -35,7 +50,6 @@ public class EventFactoryServiceImpl implements EventFactoryService {
         }else {
             event = new DefaultEvent();
         }
-
         return event;
     }
 }

@@ -28,7 +28,7 @@ public class EventTest {
     public void setUp() {
         eventRecordList = Utils.processCsvFileForGivenTimestamp("events.csv","90:00");
 
-        eventFactoryService = new EventFactoryServiceImpl();
+        eventFactoryService = EventFactoryServiceImpl.getInstance();
 
         MockitoAnnotations.initMocks(this);
     }
