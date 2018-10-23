@@ -21,7 +21,16 @@ Go to the project root directory and run following commands
     ./gradlew build    or just gradle build
     
 once build, execute the main method of 
-au.com.mm.codingChallenge.CodingChallengeApplication.java   
+au.com.mm.codingChallenge.CodingChallengeApplication.java  
+
+It will prompt the below
+./gradlew build    or just gradle build
+###### It will prompt the below
+    This will fetch the data stored in the resource folder
+    Enter a valid time stamp in  mm:ss format
+
+User should enter a valid timestamp in mm:ss format. If the format does not comply it will prompt 
+the user to enter the time again.
 
 ## Useful information and key points
 
