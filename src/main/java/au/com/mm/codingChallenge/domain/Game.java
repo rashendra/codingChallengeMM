@@ -18,8 +18,6 @@ public class Game {
 
     private List<Team> teams = new ArrayList<>();
 
-    private List<EventRecord> eventRecords = new ArrayList<>();
-
     public List<Team> getTeams() {
         return teams;
     }
@@ -32,18 +30,6 @@ public class Game {
         this.teams.add(team);
     }
 
-    public List<EventRecord> getEventRecords() {
-        return eventRecords;
-    }
-
-    public void setEventRecords(List<EventRecord> eventRecords) {
-        this.eventRecords = eventRecords;
-    }
-
-    /*
-    * Timestamp : 00:00
-    *
-    * */
     public void printSummary(Integer timestampMin, Integer timestampSec) {
 
         System.out.println("TimeStamp, Team, Possession, Shot, Score");

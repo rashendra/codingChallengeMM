@@ -54,7 +54,6 @@ public class EventTest {
 
         game.addTeam(teamA);
         game.addTeam(teamB);
-        game.setEventRecords(eventRecordList);
     }
 
 /*    @Test
