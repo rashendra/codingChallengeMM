@@ -1,20 +1,12 @@
 package au.com.mm.codingChallenge.domain;
 
-import au.com.mm.codingChallenge.service.EventFactoryService;
 import au.com.mm.codingChallenge.utils.GameConstants;
 import au.com.mm.codingChallenge.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
-    /*
-    * Someone needs to initialize the teams for the game
-    * */
-    @Autowired
-    EventFactoryService eventFactoryService;
 
     private List<Team> teams = new ArrayList<>();
 

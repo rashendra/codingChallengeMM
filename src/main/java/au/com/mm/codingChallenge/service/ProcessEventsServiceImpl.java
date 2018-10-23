@@ -43,8 +43,6 @@ public class ProcessEventsServiceImpl implements ProcessEventsService {
 
     }
 
-
-
     private Game initializeGame() {
         Game game = new Game();
         Team teamA = new Team();
@@ -52,12 +50,14 @@ public class ProcessEventsServiceImpl implements ProcessEventsService {
         teamA.setHasPossession(Boolean.FALSE);
         teamA.setScore(0);
         teamA.setNumberOfShots(0);
+        teamA.setPossession(0);
 
         Team teamB = new Team();
         teamB.setTeamName(GameConstants.TEAM_B);
         teamB.setHasPossession(Boolean.FALSE);
         teamB.setScore(0);
         teamB.setNumberOfShots(0);
+        teamB.setPossession(0);
 
         game.addTeam(teamA);
         game.addTeam(teamB);
