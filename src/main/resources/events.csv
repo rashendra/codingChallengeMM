@@ -1,0 +1,9 @@
+Time,EventType,Team
+00:00,Start,A
+00:11,Possess,B
+01:00,Possess,A
+01:20,Shot,A
+02:20,Shot,A
+02:20,Score,A
+45:00,Break,
+45:00,Start,B
