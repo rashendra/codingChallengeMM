@@ -1,7 +1,6 @@
 package au.com.mm.codingChallenge.service;
 
 import au.com.mm.codingChallenge.domain.EventRecord;
-import au.com.mm.codingChallenge.domain.events.PrintSummaryEvent;
 import au.com.mm.codingChallenge.domain.events.StartEvent;
 import au.com.mm.codingChallenge.utils.GameConstants;
 import org.junit.Before;
@@ -10,7 +9,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.List;
+
 import static au.com.mm.codingChallenge.utils.GameConstants.PRINTSUMMARY;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -28,7 +32,7 @@ public class ProcessEventsServiceImplTest {
     public void setUp()
     {
         processEventsService = ProcessEventsServiceImpl.getInstance();
-        eventFactoryService = EventFactoryServiceImpl.getInstance();
+        eventFactoryService = mock(EventFactoryServiceImpl.class);
         MockitoAnnotations.initMocks(this);
     }
 
@@ -45,13 +49,10 @@ public class ProcessEventsServiceImplTest {
         printSummaryEvent.setEventSeconds(9);
         printSummaryEvent.setTeamName(GameConstants.TEAM_A);
         printSummaryEvent.setEventType(PRINTSUMMARY);
-
-        Mockito.when(eventFactoryService.populateEvent(startEventRecord)).thenReturn(new StartEvent());
-        Mockito.when(eventFactoryService.populateEvent(printSummaryEvent)).thenReturn(new PrintSummaryEvent());
+        Mockito.when(eventFactoryService.populateEvent(any(EventRecord.class))).thenReturn(new StartEvent());
 
         processEventsService.processEventsForGivenTimestamp("0:09");
-        verify(eventFactoryService, times(0)).populateEvent(startEventRecord);
-        verify(eventFactoryService, times(0)).populateEvent(printSummaryEvent);
+        verify(eventFactoryService, times(2)).populateEvent(any(EventRecord.class));
     }
 
 

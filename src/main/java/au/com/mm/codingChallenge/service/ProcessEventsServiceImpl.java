@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProcessEventsServiceImpl implements ProcessEventsService {
 
-    private EventFactoryService eventFactoryService;
+    private EventFactoryService eventFactoryService = EventFactoryServiceImpl.getInstance();
 
     private static ProcessEventsServiceImpl processEventsImpl;
 
@@ -31,11 +31,10 @@ public class ProcessEventsServiceImpl implements ProcessEventsService {
 
     @Override
     public void processEventsForGivenTimestamp(String timeStamp) {
-        eventFactoryService  = EventFactoryServiceImpl.getInstance();
+//        eventFactoryService  = EventFactoryServiceImpl.getInstance();
         // This will only populate events which are inside the given timestamp
         Game game = initializeGame();
         List<EventRecord> eventRecordList = Utils.processCsvFileForGivenTimestamp("events.csv",timeStamp);
-
         for(EventRecord eventRecord: eventRecordList) {
             Event event  = eventFactoryService.populateEvent(eventRecord);
             event.executeEvent(game,eventRecord);

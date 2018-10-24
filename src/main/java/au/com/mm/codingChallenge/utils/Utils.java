@@ -35,6 +35,7 @@ public class Utils {
             // This event will be added as default event to calculate the possession
             EventRecord printSummaryEvent = new EventRecord();
             setEventTime(printSummaryEvent, timeStamp);
+            printSummaryEvent.setTeamName(GameConstants.TEAM_A);
             printSummaryEvent.setEventType(GameConstants.PRINTSUMMARY);
             eventRecords.add(printSummaryEvent);
 

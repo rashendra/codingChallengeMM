@@ -24,7 +24,6 @@ public class CodingChallengeApplication {
                 } else {
                     System.out.println("Invalid format! Please enter a valid time stamp in mm:ss format");
                 }
-
             }
 
         } catch (Exception e) {
