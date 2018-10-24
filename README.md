@@ -40,6 +40,7 @@ Sample values would be
 
 
 ## Useful information and key points
+
 1. The application will load the csv file which I have placed inside the resource file 
 2. The events.csv file is placed below 
    codingChallengeMM/src/main/resources/events.csv
