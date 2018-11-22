@@ -28,6 +28,14 @@ It will prompt the below
 ###### It will prompt the below
     This will fetch the data stored in the resource folder
     Enter a valid time stamp in  mm:ss format
+###### This will be one of the example 
+    This will fetch the data stored in the resource folder
+    Enter a valid time stamp in  mm:ss format
+    14:11
+    TimeStamp, Team, Possession, Shot, Score
+    14:11,    A,    94.242065%,    2,    1
+    14:11,    B,    5.757932%,    0,    0
+    Enter another timestamp in mm:ss format
 
 User should enter a valid timestamp in mm:ss format. If the format does not comply it will prompt 
 the user to enter the time again.
